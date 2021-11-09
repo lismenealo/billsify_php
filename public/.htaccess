@@ -1,0 +1,7 @@
+ErrorDocument 404 /billsify/public/404
+RewriteEngine on
+RewriteRule ^contact$ index.php
+RewriteRule ^home$ index.php
+RewriteRule ^application_details$ index.php
+RewriteRule ^go_premium$ index.php
+RewriteRule ^404$ index.php

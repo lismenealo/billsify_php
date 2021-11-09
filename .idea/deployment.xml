@@ -5,7 +5,7 @@
       <paths name="XAMP">
         <serverdata>
           <mappings>
-            <mapping deploy="billsify" local="$PROJECT_DIR$" web="/billsify" />
+            <mapping deploy="billsify" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
