@@ -9,6 +9,8 @@ RewriteRule ^register$ index.php
 RewriteRule ^logout$ index.php
 RewriteRule ^reset_password$ index.php
 RewriteRule ^app_features$ index.php
+RewriteRule ^create_app_features$ index.php
+RewriteRule ^create_app_features$ index.php
 RewriteRule ^news_feed$ index.php
 RewriteRule ^appointments$ index.php
 RewriteRule ^404$ index.php

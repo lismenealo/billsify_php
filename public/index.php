@@ -13,6 +13,9 @@
          - .png and .svg icons sprite,
          - preloader.gif (for browsers that do not support CSS animations) -->
     <link rel="stylesheet" href="css/default-skin/default-skin.css">
+
+    <script src="https://cdn.tiny.cloud/1/0z5yf56h0vieqgo4vr2zj1lsb6tcnoi8v5w95fcwyvnjuhlw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector:'#pclu-textarea',branding: false });</script>
 </head>
 <body class="homepage is-preload">
 <div id="page-wrapper">
@@ -47,7 +50,15 @@
         include_once "../templates/auth/logout.php";
     } else if ($url === '/billsify/public/app_features') {
         include_once "../templates/features/app_features.php";
-    } else if ($url === '/billsify/public/news_feed') {
+    } else if ($url === '/billsify/public/create_app_features') {
+        include_once "../templates/features/create.php";
+    } else if ($url === '/billsify/public/app_features/view') {
+        include_once "../templates/features/view.php";
+    } else if ($url === '/billsify/public/app_features/update') {
+        include_once "../templates/features/update.php";
+    }  else if ($url === '/billsify/public/app_features/delete') {
+        include_once "../templates/features/delete.php";
+    }else if ($url === '/billsify/public/news_feed') {
         include_once "../templates/news/news_feed.php";
     } else if ($url === '/billsify/public/appointments') {
         include_once "../templates/appointments/appointments.php";

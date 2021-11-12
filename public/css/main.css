@@ -1728,6 +1728,46 @@ form ::-moz-focus-inner {
 	border: 0;
 }
 
+/* Table */
+
+table {
+	width: 100%;
+}
+
+table tbody tr {
+	border-top: solid 1px #E5E5E5;
+}
+
+table tbody tr:first-child {
+	border-top: 0;
+}
+
+table td {
+	padding: 0.75em 1em 0.75em 1em;
+}
+
+table th {
+	text-align: left;
+	font-weight: bold;
+	padding: 0.75em 1em 0.75em 1em;
+}
+
+table thead {
+	background: #878787;
+	color: #fff;
+	font-weight: 400;
+	text-transform: uppercase;
+	border: 0;
+	box-shadow: 0.125em 0.175em 0 0 rgba(0, 0, 0, 0.125);
+	font-size: 0.85em;
+	letter-spacing: 2px;
+}
+
+table tfoot {
+	background: #F0F0F0;
+	border-top: solid 2px #E5E5E5;
+}
+
 /* Button */
 
 input[type="button"],
@@ -1743,7 +1783,7 @@ button,
 	position: relative;
 	display: inline-block;
 	background:  var(--main-basic-color);
-	color:  var(--main-accent-color) !important;
+	color:  var(--main-accent-color);
 	text-transform: uppercase;
 	border-radius: 4px;
 	border: 0;
@@ -1774,7 +1814,7 @@ input[type="reset"]:hover,
 button:hover,
 .button:hover {
 	background:  var(--main-accent-color);
-	color:  var(--main-basic-color) !important;
+	color:  var(--main-basic-color);
 }
 
 input[type="button"]:active,
@@ -1783,7 +1823,7 @@ input[type="reset"]:active,
 button:active,
 .button:active {
 	background:  var(--main-accent-color);
-	color:  var(--main-basic-color) !important;
+	color:  var(--main-basic-color);
 }
 
 input[type="button"].alt,
@@ -1792,7 +1832,7 @@ input[type="reset"].alt,
 button.alt,
 .button.alt {
 	background:  var(--main-accent-color);
-	color:  var(--main-basic-color) !important;
+	color:  var(--main-basic-color);
 }
 
 input[type="button"].alt:hover,
@@ -1801,7 +1841,7 @@ input[type="reset"].alt:hover,
 button.alt:hover,
 .button.alt:hover {
 	background:  var(--main-accent-color);
-	color:  var(--main-basic-color) !important;
+	color:  var(--main-basic-color);
 }
 
 input[type="button"].alt:active,
@@ -1810,7 +1850,7 @@ input[type="reset"].alt:active,
 button.alt:active,
 .button.alt:active {
 	background:  var(--main-accent-color);
-	color:  var(--main-basic-color) !important;
+	color:  var(--main-basic-color);
 }
 
 input[type="button"]:disabled,
@@ -1818,7 +1858,7 @@ input[type="submit"]:disabled,
 input[type="reset"]:disabled,
 button:disabled,
 .button:disabled {
-	color: var(--body-basic-color) !important;
+	color: var(--body-basic-color);
 	background: var(--body-bg);
 }
 
