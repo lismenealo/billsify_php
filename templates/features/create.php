@@ -15,7 +15,7 @@ require_once "../modules/Features/create.php";
                     <div class="row">
                         <div class="col-md-12">
                             <p>Please fill this form and submit to add employee record to the database.</p>
-                            <form action="create_app_features" method="post">
+                            <form action="create_app_features" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Title</label>
                                     <input type="text" name="title" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>">
