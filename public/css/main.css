@@ -1822,6 +1822,11 @@ button:disabled,
 	background: var(--body-bg);
 }
 
+.btn.btn-link {
+	float: right;
+	padding-top: 20px;
+}
+
 .validation {
 	color: #db0000;
 	text-transform: lowercase;
@@ -2007,6 +2012,22 @@ button:disabled,
 	color:  var(--main-accent-color);
 }
 
+ul.dropotron {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	background-color: #f0f0f0;
+}
+
+ul.dropotron li {
+	border: none;
+	margin: 0;
+	padding: 5px;
+}
+
+ul.dropotron li a span {
+	margin-left: 10px;
+}
 
 /* Features */
 

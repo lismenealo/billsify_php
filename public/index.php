@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/main.css" />
     <!-- Core CSS file -->
     <link rel="stylesheet" href="css/photoswipe.css">
-
     <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
          In the folder of skin CSS file there are also:
          - .png and .svg icons sprite,
@@ -17,29 +16,49 @@
 </head>
 <body class="homepage is-preload">
 <div id="page-wrapper">
-
     <?php
-    include_once "../templates/components/nav.php";
-    ?>
+    // Initialize the session
+    session_start();
 
-    <?php
-    if ($_SERVER['REQUEST_URI'] === '/billsify/public/' or $_SERVER['REQUEST_URI'] === '/billsify/public/home') {
-        include_once "../templates/views/home.php";
-    } else if ($_SERVER['REQUEST_URI'] === '/billsify/public/application_details') {
-        include_once "../templates/views/application_details.php";
-    } else if ($_SERVER['REQUEST_URI'] === '/billsify/public/contact') {
-        include_once "../templates/views/contact.php";
-    } else if ($_SERVER['REQUEST_URI'] === '/billsify/public/go_premium') {
-        include_once "../templates/views/go_premium.php";
-    } else {
-        include_once "../templates/components/404.php";
+    $url = $_SERVER['REQUEST_URI'];
+    // Check if the user is logged in, if not then redirect him to login page
+    if((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) &&
+        ($url === '/billsify/public/news_feed' || $url === '/billsify/public/appointments'
+        || $url === '/billsify/public/app_features' || $url === '/billsify/public/user_settings' || $url === '/billsify/public/reset_password')){
+        header("location: login");
+        exit;
     }
-    ?>
 
-    <?php
+    include_once "../templates/components/nav.php";
+
+    if ($url === '/billsify/public/' or $url === '/billsify/public/home') {
+        include_once "../templates/views/home.php";
+    } else if ($url === '/billsify/public/application_details') {
+        include_once "../templates/views/application_details.php";
+    } else if ($url === '/billsify/public/contact') {
+        include_once "../templates/views/contact.php";
+    } else if ($url === '/billsify/public/go_premium') {
+        include_once "../templates/views/go_premium.php";
+    } else if ($url === '/billsify/public/register') {
+        include_once "../templates/auth/register.php";
+    } else if ($url === '/billsify/public/login') {
+        include_once "../templates/auth/login.php";
+    } else if ($url === '/billsify/public/logout') {
+        include_once "../templates/auth/logout.php";
+    } else if ($url === '/billsify/public/app_features') {
+        include_once "../templates/features/app_features.php";
+    } else if ($url === '/billsify/public/news_feed') {
+        include_once "../templates/news/news_feed.php";
+    } else if ($url === '/billsify/public/appointments') {
+        include_once "../templates/appointments/appointments.php";
+    } else if ($url === '/billsify/public/reset_password') {
+        include_once "../templates/auth/reset_password.php";
+    } else {
+        include_once "../templates/views/404.php";
+    }
+
     include_once "../templates/components/footer.php";
     ?>
-
 </div>
 
 
@@ -113,6 +132,13 @@
 <script src="js/news-loader.js"></script>
 
 <script src="js/budget-calculator.js"></script>
+
+<script src="js/jquery.min.js"></script>
+
+<script src="js/jquery.dropotron.min.js"></script>
+
+<script src="js/main.js"></script>
+
 <!-- Core JS file -->
 <script src="js/photoswipe.min.js"></script>
 

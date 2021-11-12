@@ -4,4 +4,11 @@ RewriteRule ^contact$ index.php
 RewriteRule ^home$ index.php
 RewriteRule ^application_details$ index.php
 RewriteRule ^go_premium$ index.php
+RewriteRule ^login$ index.php
+RewriteRule ^register$ index.php
+RewriteRule ^logout$ index.php
+RewriteRule ^reset_password$ index.php
+RewriteRule ^app_features$ index.php
+RewriteRule ^news_feed$ index.php
+RewriteRule ^appointments$ index.php
 RewriteRule ^404$ index.php
