@@ -3,11 +3,13 @@
 require_once "../modules/Data/config.php";
 
 // Define variables and initialize with empty values
-$title = $description = $tech_stack = $time = $image  = "";
-$title_err = $description_err = $tech_stack_err = $time_err = $image_err = "";
+$title = $body = $tech_stack = $time = $image  = "";
+$title_err = $body_err = $tech_stack_err = $time_err = $image_err = "";
 
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get URL parameter
+    $id =  trim($_GET["id"]);
 
     $target_dir = "images/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -48,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
+        // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
@@ -67,20 +69,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $title = $input_title;
     }
 
-    // Validate description
-    $input_description = trim($_POST["description"]);
-    if(empty($input_description)){
-        $description_err = "Please enter an description.";
+    // Validate body
+    $input_body = trim($_POST["body"]);
+    if(empty($input_body)){
+        $body_err = "Please enter an body.";
     } else{
-        $description = $input_description;
-    }
-
-    // Validate tech_stack
-    $input_tech_stack = trim($_POST["tech_stack"]);
-    if(empty($input_tech_stack)){
-        $tech_stack_err = "Please enter the tech stack.";
-    } else {
-        $tech_stack = $input_tech_stack;
+        $body = $input_body;
     }
 
     // Validate image
@@ -91,29 +85,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $image = $input_image;
     }
 
-    // Validate time
-    $input_time = trim($_POST["time"]);
-    if(empty($input_time)){
-        $time_err = "Please enter the time.";
-    } else {
-        $time = $input_time;
-    }
-
     // Check input errors before inserting in database
-    if(empty($title_err) && empty($description_err) && empty($tech_stack_err)){
+    if(empty($title_err) && empty($body_err) && empty($tech_stack_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO app_features (title, description, tech_stack, image, time) VALUES (?, ?, ?, ?, ?)";
+        $sql = "UPDATE news SET title=?, body=?, image=? WHERE id=?";
 
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssss", $param_title, $param_description, $param_tech_stack, $param_image, $param_time);
 
             // Set parameters
             $param_title = $title;
-            $param_description = $description;
-            $param_tech_stack = $tech_stack;
+            $param_body = $body;
             $param_image = $image;
-            $param_time = $time;
+            $param_id = $id;
+
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ssss", $param_title, $param_body, $param_image, $param_id);
+
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -131,4 +118,54 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Close connection
     mysqli_close($link);
+} else {
+    // Check existence of id parameter before processing further
+    if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+        // Get URL parameter
+        $id =  trim($_GET["id"]);
+
+        // Prepare a select statement
+        $sql = "SELECT * FROM news WHERE id = ?";
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $param_id);
+
+            // Set parameters
+            $param_id = $id;
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                $result = mysqli_stmt_get_result($stmt);
+
+                if(mysqli_num_rows($result) == 1){
+                    /* Fetch result row as an associative array. Since the result set
+                    contains only one row, we don't need to use while loop */
+                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+                    // Retrieve individual field value
+                    $title = $row["title"];
+                    $body = $row["body"];
+                    $image = $row["image"];
+
+                } else{
+                    // URL doesn't contain valid id. Redirect to error page
+                    header("location: error");
+                    exit();
+                }
+
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+
+        // Close connection
+        mysqli_close($link);
+    }  else {
+        // URL doesn't contain id parameter. Redirect to error page
+        header("location: error");
+        exit();
+    }
 }

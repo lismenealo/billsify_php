@@ -1,16 +1,6 @@
 ErrorDocument 404 /billsify/public/404
-RewriteEngine on
-RewriteRule ^contact$ index.php
-RewriteRule ^home$ index.php
-RewriteRule ^application_details$ index.php
-RewriteRule ^go_premium$ index.php
-RewriteRule ^login$ index.php
-RewriteRule ^register$ index.php
-RewriteRule ^logout$ index.php
-RewriteRule ^reset_password$ index.php
-RewriteRule ^app_features$ index.php
-RewriteRule ^create_app_features$ index.php
-RewriteRule ^create_app_features$ index.php
-RewriteRule ^news_feed$ index.php
-RewriteRule ^appointments$ index.php
-RewriteRule ^404$ index.php
+Options +SymLinksIfOwnerMatch
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /billsify/public/index.php [L]

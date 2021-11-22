@@ -3,16 +3,16 @@
 <head>
     <title>Billsify Home</title>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://localhost/billsify/public/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="http://localhost/billsify/public/css/main.css" />
     <!-- Core CSS file -->
-    <link rel="stylesheet" href="css/photoswipe.css">
+    <link rel="stylesheet" href="http://localhost/billsify/public/css/photoswipe.css">
     <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
          In the folder of skin CSS file there are also:
          - .png and .svg icons sprite,
          - preloader.gif (for browsers that do not support CSS animations) -->
-    <link rel="stylesheet" href="css/default-skin/default-skin.css">
+    <link rel="stylesheet" href="http://localhost/billsify/public/css/default-skin/default-skin.css">
 
     <script src="https://cdn.tiny.cloud/1/0z5yf56h0vieqgo4vr2zj1lsb6tcnoi8v5w95fcwyvnjuhlw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({ selector:'#pclu-textarea',branding: false });</script>
@@ -48,22 +48,34 @@
         include_once "../templates/auth/login.php";
     } else if ($url === '/billsify/public/logout') {
         include_once "../templates/auth/logout.php";
-    } else if ($url === '/billsify/public/app_features') {
-        include_once "../templates/features/app_features.php";
-    } else if ($url === '/billsify/public/create_app_features') {
+    } else if ($url === '/billsify/public/app_features/list' || $url === '/billsify/public/app_features') {
+        include_once "../templates/features/list.php";
+    } else if ($url === '/billsify/public/app_features/create') {
         include_once "../templates/features/create.php";
-    } else if ($url === '/billsify/public/app_features/view') {
-        include_once "../templates/features/view.php";
-    } else if ($url === '/billsify/public/app_features/update') {
+    } else if (str_starts_with($url,'/billsify/public/app_features/update')) {
         include_once "../templates/features/update.php";
-    }  else if ($url === '/billsify/public/app_features/delete') {
+    } else if (str_starts_with($url, '/billsify/public/app_features/delete')) {
         include_once "../templates/features/delete.php";
-    }else if ($url === '/billsify/public/news_feed') {
-        include_once "../templates/news/news_feed.php";
+    } else if ($url === '/billsify/public/news/list' || $url === '/billsify/public/news') {
+        include_once "../templates/news/list.php";
+    }  else if ($url === '/billsify/public/news/create') {
+        include_once "../templates/news/create.php";
+    } else if (str_starts_with($url,'/billsify/public/news/update')) {
+        include_once "../templates/news/update.php";
+    } else if (str_starts_with($url, '/billsify/public/news/delete')) {
+        include_once "../templates/news/delete.php";
     } else if ($url === '/billsify/public/appointments') {
-        include_once "../templates/appointments/appointments.php";
+        include_once "../templates/appointments/list.php";
+    }   else if ($url === '/billsify/public/appointments/create') {
+        include_once "../templates/appointments/create.php";
+    } else if (str_starts_with($url,'/billsify/public/appointments/update')) {
+        include_once "../templates/appointments/update.php";
+    } else if (str_starts_with($url, '/billsify/public/appointments/delete')) {
+        include_once "../templates/appointments/delete.php";
     } else if ($url === '/billsify/public/reset_password') {
         include_once "../templates/auth/reset_password.php";
+    } else if ($url === '/billsify/public/error') {
+        include_once "../templates/views/error.php";
     } else {
         include_once "../templates/views/404.php";
     }
@@ -140,23 +152,23 @@
 
 </div>
 
-<script src="js/news-loader.js"></script>
+<script src="http://localhost/billsify/public/js/news-loader.js"></script>
 
-<script src="js/budget-calculator.js"></script>
+<script src="http://localhost/billsify/public/js/budget-calculator.js"></script>
 
-<script src="js/jquery.min.js"></script>
+<script src="http://localhost/billsify/public/js/jquery.min.js"></script>
 
-<script src="js/jquery.dropotron.min.js"></script>
+<script src="http://localhost/billsify/public/js/jquery.dropotron.min.js"></script>
 
-<script src="js/main.js"></script>
+<script src="http://localhost/billsify/public/js/main.js"></script>
 
 <!-- Core JS file -->
-<script src="js/photoswipe.min.js"></script>
+<script src="http://localhost/billsify/public/js/photoswipe.min.js"></script>
 
 <!-- UI JS file -->
-<script src="js/photoswipe-ui-default.min.js"></script>
+<script src="http://localhost/billsify/public/js/photoswipe-ui-default.min.js"></script>
 
-<script src="js/gallery.js"></script>
+<script src="http://localhost/billsify/public/js/gallery.js"></script>
 
 <!--[if lt IE 9]>
 <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -164,7 +176,7 @@
 
 <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 <script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA90pNmvagA3ZZ2JyPDcWvHm-fcXd_4gto&callback=initMap&libraries=&v=weekly" async></script>
-<script src="js/map-loader.js"></script>
+<script src="http://localhost/billsify/public/js/map-loader.js"></script>
 
 </body>
 </html>

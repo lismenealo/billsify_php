@@ -4,7 +4,7 @@
 <section id="main">
     <div class="container">
         <header>
-            <h2><strong>404</strong> Ups! Not found :| </h2>
+            <h2><strong>Error</strong> Ups! something went wrong :| </h2>
         </header>
     </div>
 </section>

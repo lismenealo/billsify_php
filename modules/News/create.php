@@ -3,8 +3,8 @@
 require_once "../modules/Data/config.php";
 
 // Define variables and initialize with empty values
-$title = $description = $tech_stack = $time = $image  = "";
-$title_err = $description_err = $tech_stack_err = $time_err = $image_err = "";
+$title = $body = $tech_stack = $time = $image  = "";
+$title_err = $body_err = $tech_stack_err = $time_err = $image_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -67,20 +67,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $title = $input_title;
     }
 
-    // Validate description
-    $input_description = trim($_POST["description"]);
-    if(empty($input_description)){
-        $description_err = "Please enter an description.";
+    // Validate body
+    $input_body = trim($_POST["body"]);
+    if(empty($input_body)){
+        $body_err = "Please enter an body.";
     } else{
-        $description = $input_description;
-    }
-
-    // Validate tech_stack
-    $input_tech_stack = trim($_POST["tech_stack"]);
-    if(empty($input_tech_stack)){
-        $tech_stack_err = "Please enter the tech stack.";
-    } else {
-        $tech_stack = $input_tech_stack;
+        $body = $input_body;
     }
 
     // Validate image
@@ -91,29 +83,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $image = $input_image;
     }
 
-    // Validate time
-    $input_time = trim($_POST["time"]);
-    if(empty($input_time)){
-        $time_err = "Please enter the time.";
-    } else {
-        $time = $input_time;
-    }
-
     // Check input errors before inserting in database
-    if(empty($title_err) && empty($description_err) && empty($tech_stack_err)){
+    if(empty($title_err) && empty($body_err) && empty($tech_stack_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO app_features (title, description, tech_stack, image, time) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO news (title, body, image) VALUES (?, ?, ?)";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssss", $param_title, $param_description, $param_tech_stack, $param_image, $param_time);
+            mysqli_stmt_bind_param($stmt, "sss", $param_title, $param_body, $param_image);
 
             // Set parameters
             $param_title = $title;
-            $param_description = $description;
-            $param_tech_stack = $tech_stack;
+            $param_body = $body;
             $param_image = $image;
-            $param_time = $time;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){

@@ -1,12 +1,12 @@
 <?php
-require_once "../modules/Features/create.php";
+require_once "../modules/Features/update.php";
 ?>
 
 <!-- Main -->
 <section id="main">
     <div class="container">
         <header>
-            <h2>Create App Feature</h2>
+            <h2>Update App Feature</h2>
         </header>
 
         <div class="row aln-center">
@@ -14,8 +14,9 @@ require_once "../modules/Features/create.php";
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>Please fill this form and submit to add employee record to the database.</p>
-                            <form action="create" method="post" enctype="multipart/form-data">
+                            <h2 class="mt-5">Update Record</h2>
+                            <p>Please edit the input values and submit to update the employee record.</p>
+                            <form action="update?id=<?php echo trim($_GET["id"])?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Title</label>
                                     <input type="text" name="title" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>">

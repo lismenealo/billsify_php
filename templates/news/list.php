@@ -1,5 +1,5 @@
 <?php
-require_once "../modules/Features/app_features.php";
+require_once "../modules/News/list.php";
 ?>
 
 <!-- Main -->
@@ -15,7 +15,7 @@ require_once "../modules/Features/app_features.php";
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mt-5 mb-3 clearfix">
-                                <a href="create_app_features" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Feature</a>
+                                <a href="http://localhost/billsify/public/news/create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add News</a>
                             </div>
                             <?php
                             if($count > 0){
@@ -24,10 +24,8 @@ require_once "../modules/Features/app_features.php";
                                 echo "<tr>";
                                 echo "<th>#</th>";
                                 echo "<th>Title</th>";
-                                echo "<th>Description</th>";
-                                echo "<th>Tech Stack</th>";
+                                echo "<th>Body</th>";
                                 echo "<th>Image</th>";
-                                echo "<th>Time</th>";
                                 echo "<th>Action</th>";
                                 echo "</tr>";
                                 echo "</thead>";
@@ -36,14 +34,11 @@ require_once "../modules/Features/app_features.php";
                                     echo "<tr>";
                                     echo "<td>" . $row['id'] . "</td>";
                                     echo "<td>" . $row['title'] . "</td>";
-                                    echo "<td>" . $row['description'] . "</td>";
-                                    echo "<td>" . $row['tech_stack'] . "</td>";
+                                    echo "<td>" . $row['body'] . "</td>";
                                     echo "<td>" . $row['image'] . "</td>";
-                                    echo "<td>" . $row['time'] . "</td>";
                                     echo "<td>";
-                                    echo '<a href="app_features/read?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                    echo '<a href="app_features/update?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pen"></span></a>';
-                                    echo '<a href="app_features/delete?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                    echo '<a href="http://localhost/billsify/public/news/update?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pen"></span></a>';
+                                    echo '<a href="http://localhost/billsify/public/news/delete?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                     echo "</td>";
                                     echo "</tr>";
                                 }

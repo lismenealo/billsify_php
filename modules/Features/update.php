@@ -7,7 +7,9 @@ $title = $description = $tech_stack = $time = $image  = "";
 $title_err = $description_err = $tech_stack_err = $time_err = $image_err = "";
 
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get URL parameter
+    $id =  trim($_GET["id"]);
 
     $target_dir = "images/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -48,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
+        // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
@@ -102,11 +104,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($title_err) && empty($description_err) && empty($tech_stack_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO app_features (title, description, tech_stack, image, time) VALUES (?, ?, ?, ?, ?)";
+        $sql = "UPDATE app_features SET title=?, description=?, tech_stack=?, image=?, time=? WHERE id=?";
 
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssss", $param_title, $param_description, $param_tech_stack, $param_image, $param_time);
 
             // Set parameters
             $param_title = $title;
@@ -114,6 +114,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_tech_stack = $tech_stack;
             $param_image = $image;
             $param_time = $time;
+            $param_id = $id;
+
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ssssss", $param_title, $param_description, $param_tech_stack, $param_image, $param_time, $param_id);
+
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -131,4 +136,56 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Close connection
     mysqli_close($link);
+} else {
+    // Check existence of id parameter before processing further
+    if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+        // Get URL parameter
+        $id =  trim($_GET["id"]);
+
+        // Prepare a select statement
+        $sql = "SELECT * FROM app_features WHERE id = ?";
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $param_id);
+
+            // Set parameters
+            $param_id = $id;
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                $result = mysqli_stmt_get_result($stmt);
+
+                if(mysqli_num_rows($result) == 1){
+                    /* Fetch result row as an associative array. Since the result set
+                    contains only one row, we don't need to use while loop */
+                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+                    // Retrieve individual field value
+                    $title = $row["title"];
+                    $description = $row["description"];
+                    $tech_stack = $row["tech_stack"];
+                    $image = $row["image"];
+                    $time = $row["time"];
+
+                } else{
+                    // URL doesn't contain valid id. Redirect to error page
+                    header("location: error");
+                    exit();
+                }
+
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+
+        // Close connection
+        mysqli_close($link);
+    }  else {
+        // URL doesn't contain id parameter. Redirect to error page
+        header("location: error");
+        exit();
+    }
 }
