@@ -32,8 +32,10 @@ require_once "../modules/Appointments/update.php";
                                     <input type="date" name="date" class="form-control <?php echo (!empty($date_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $date; ?>">
                                     <span class="invalid-feedback"><?php echo $date_err;?></span>
                                 </div>
-                                <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="appointments" class="btn btn-secondary ml-2">Cancel</a>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="Submit">
+                                    <a class="btn btn-link ml-2" href="appointments">Cancel</a>
+                                </div>
                             </form>
                         </div>
                     </div>

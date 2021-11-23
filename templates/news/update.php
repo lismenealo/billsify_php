@@ -32,8 +32,10 @@ require_once "../modules/News/update.php";
                                     <input type="file" name="fileToUpload" id="fileToUpload"  class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $image; ?>">
                                     <span class="invalid-feedback"><?php echo $image_err;?></span>
                                 </div>
-                                <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="news_feed" class="btn btn-secondary ml-2">Cancel</a>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="Submit">
+                                    <a class="btn btn-link ml-2" href="news_feed">Cancel</a>
+                                </div>
                             </form>
                         </div>
                     </div>

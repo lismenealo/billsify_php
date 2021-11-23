@@ -40,8 +40,10 @@ require_once "../modules/Users/create.php";
                                     <input type="text" name="role" class="form-control <?php echo (!empty($role_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $role; ?>">
                                     <span class="invalid-feedback"><?php echo $role_err;?></span>
                                 </div>
-                                <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="users" class="btn btn-secondary ml-2">Cancel</a>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="Submit">
+                                    <a class="btn btn-link ml-2" href="users">Cancel</a>
+                                </div>
                             </form>
                         </div>
                     </div>
