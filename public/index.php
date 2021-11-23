@@ -64,7 +64,7 @@
         include_once "../templates/news/update.php";
     } else if (str_starts_with($url, '/billsify/public/news/delete')) {
         include_once "../templates/news/delete.php";
-    } else if ($url === '/billsify/public/appointments') {
+    } else if ($url === '/billsify/public/appointments/list' || $url === '/billsify/public/appointments') {
         include_once "../templates/appointments/list.php";
     }   else if ($url === '/billsify/public/appointments/create') {
         include_once "../templates/appointments/create.php";
@@ -72,6 +72,14 @@
         include_once "../templates/appointments/update.php";
     } else if (str_starts_with($url, '/billsify/public/appointments/delete')) {
         include_once "../templates/appointments/delete.php";
+    } else if ($url === '/billsify/public/users/list' || $url === '/billsify/public/users') {
+        include_once "../templates/users/list.php";
+    }   else if ($url === '/billsify/public/users/create') {
+        include_once "../templates/users/create.php";
+    } else if (str_starts_with($url,'/billsify/public/users/update')) {
+        include_once "../templates/users/update.php";
+    } else if (str_starts_with($url, '/billsify/public/users/delete')) {
+        include_once "../templates/users/delete.php";
     } else if ($url === '/billsify/public/reset_password') {
         include_once "../templates/auth/reset_password.php";
     } else if ($url === '/billsify/public/error') {
