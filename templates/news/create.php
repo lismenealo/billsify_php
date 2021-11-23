@@ -14,7 +14,7 @@ require_once "../modules/News/create.php";
                     <div class="row">
                         <div class="col-md-12">
                             <p>Please fill this form and submit to add employee record to the database.</p>
-                            <form action="create" method="post" enctype="multipart/form-data">
+                            <form action="news_feed_create" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Title</label>
                                     <input type="text" name="title" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>">
@@ -31,7 +31,7 @@ require_once "../modules/News/create.php";
                                     <span class="invalid-feedback"><?php echo $image_err;?></span>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="list" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="news_feed" class="btn btn-secondary ml-2">Cancel</a>
                             </form>
                         </div>
                     </div>

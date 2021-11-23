@@ -16,7 +16,7 @@ if($stmt = mysqli_prepare($link, $sql)){
     // Attempt to execute the prepared statement
     if(mysqli_stmt_execute($stmt)){
         // Records deleted successfully. Redirect to landing page
-        header("location: list");
+        header("location: app_features");
         exit();
     } else{
         echo "Oops! Something went wrong. Please try again later.";

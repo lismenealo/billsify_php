@@ -15,7 +15,11 @@ require_once "../modules/Features/list.php";
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mt-5 mb-3 clearfix">
-                                <a href="http://localhost/billsify/public/app_features/create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Feature</a>
+                                <?php
+                                if ($isAdmin) {
+                                    echo '<a href="app_features_create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Feature</a>';
+                                }
+                                ?>
                             </div>
                             <?php
                             if($count > 0){
@@ -28,7 +32,9 @@ require_once "../modules/Features/list.php";
                                 echo "<th>Tech Stack</th>";
                                 echo "<th>Image</th>";
                                 echo "<th>Time</th>";
-                                echo "<th>Action</th>";
+                                if ($isAdmin) {
+                                    echo "<th>Action</th>";
+                                }
                                 echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -40,10 +46,12 @@ require_once "../modules/Features/list.php";
                                     echo "<td>" . $row['tech_stack'] . "</td>";
                                     echo "<td>" . $row['image'] . "</td>";
                                     echo "<td>" . $row['time'] . "</td>";
-                                    echo "<td>";
-                                    echo '<a href="http://localhost/billsify/public/app_features/update?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pen"></span></a>';
-                                    echo '<a href="http://localhost/billsify/public/app_features/delete?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
-                                    echo "</td>";
+                                    if ($isAdmin) {
+                                        echo "<td>";
+                                        echo '<a href="app_features_update?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pen"></span></a>';
+                                        echo '<a href="app_features_delete?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                        echo "</td>";
+                                    }
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";

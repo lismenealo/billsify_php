@@ -6,7 +6,7 @@ require_once "../modules/Users/list.php";
 <section id="main">
     <div class="container">
         <header>
-            <h2>Appointments</h2>
+            <h2>Users</h2>
         </header>
 
         <div class="row aln-center">
@@ -15,7 +15,11 @@ require_once "../modules/Users/list.php";
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mt-5 mb-3 clearfix">
-                                <a href="http://localhost/billsify/public/users/create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add Appointment</a>
+                                <?php
+                                if ($isAdmin) {
+                                    echo '<a href="users_create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add User</a>';
+                                }
+                                ?>
                             </div>
                             <?php
                             if($count > 0){
@@ -27,7 +31,9 @@ require_once "../modules/Users/list.php";
                                 echo "<th>Name</th>";
                                 echo "<th>Email</th>";
                                 echo "<th>Role</th>";
-                                echo "<th>Action</th>";
+                                if ($isAdmin) {
+                                    echo "<th>Action</th>";
+                                }
                                 echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -38,10 +44,12 @@ require_once "../modules/Users/list.php";
                                     echo "<td>" . $row['name'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
                                     echo "<td>" . $row['rol_id'] . "</td>";
-                                    echo "<td>";
-                                    echo '<a href="http://localhost/billsify/public/users/update?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pen"></span></a>';
-                                    echo '<a href="http://localhost/billsify/public/users/delete?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
-                                    echo "</td>";
+                                    if ($isAdmin) {
+                                        echo "<td>";
+                                        echo '<a href="users_update?id=' . $row['id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pen"></span></a>';
+                                        echo '<a href="users_delete?id=' . $row['id'] . '" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                        echo "</td>";
+                                    }
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";

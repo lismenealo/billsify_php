@@ -14,7 +14,7 @@ require_once "../modules/Appointments/create.php";
                     <div class="row">
                         <div class="col-md-12">
                             <p>Please fill this form and submit to add employee record to the database.</p>
-                            <form action="create" method="post" enctype="multipart/form-data">
+                            <form action="appointments_create" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>User</label>
                                     <input type="text" name="user" class="form-control <?php echo (!empty($user_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $user; ?>">
@@ -31,7 +31,7 @@ require_once "../modules/Appointments/create.php";
                                     <span class="invalid-feedback"><?php echo $date_err;?></span>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="list" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="appointments" class="btn btn-secondary ml-2">Cancel</a>
                             </form>
                         </div>
                     </div>

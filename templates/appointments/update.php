@@ -16,7 +16,7 @@ require_once "../modules/Appointments/update.php";
                         <div class="col-md-12">
                             <h2 class="mt-5">Update Record</h2>
                             <p>Please edit the input values and submit to update the employee record.</p>
-                            <form action="update?id=<?php echo trim($_GET["id"])?>" method="post" enctype="multipart/form-data">
+                            <form action="appointments_update?id=<?php echo trim($_GET["id"])?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>User</label>
                                     <input type="text" name="user" class="form-control <?php echo (!empty($user_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $user; ?>">
@@ -33,7 +33,7 @@ require_once "../modules/Appointments/update.php";
                                     <span class="invalid-feedback"><?php echo $date_err;?></span>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="list" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="appointments" class="btn btn-secondary ml-2">Cancel</a>
                             </form>
                         </div>
                     </div>

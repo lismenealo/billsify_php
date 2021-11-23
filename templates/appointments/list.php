@@ -15,7 +15,11 @@ require_once "../modules/Appointments/list.php";
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mt-5 mb-3 clearfix">
-                                <a href="http://localhost/billsify/public/appointments/create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add Appointment</a>
+                                <?php
+                                if ($isAdmin) {
+                                 echo '<a href="appointments_create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add Appointment</a>';
+                                }
+                                ?>
                             </div>
                             <?php
                             if($count > 0){
@@ -26,7 +30,9 @@ require_once "../modules/Appointments/list.php";
                                 echo "<th>User</th>";
                                 echo "<th>Date</th>";
                                 echo "<th>Comment</th>";
-                                echo "<th>Action</th>";
+                                if ($isAdmin) {
+                                    echo "<th>Action</th>";
+                                }
                                 echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -36,10 +42,12 @@ require_once "../modules/Appointments/list.php";
                                     echo "<td>" . $row['user_id'] . "</td>";
                                     echo "<td>" . $row['date'] . "</td>";
                                     echo "<td>" . $row['comment'] . "</td>";
-                                    echo "<td>";
-                                    echo '<a href="http://localhost/billsify/public/appointments/update?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pen"></span></a>';
-                                    echo '<a href="http://localhost/billsify/public/appointments/delete?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
-                                    echo "</td>";
+                                    if ($isAdmin) {
+                                        echo "<td>";
+                                        echo '<a href="appointments_update?id=' . $row['id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pen"></span></a>';
+                                        echo '<a href="appointments_delete?id=' . $row['id'] . '" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                        echo "</td>";
+                                    }
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";

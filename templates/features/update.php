@@ -16,7 +16,7 @@ require_once "../modules/Features/update.php";
                         <div class="col-md-12">
                             <h2 class="mt-5">Update Record</h2>
                             <p>Please edit the input values and submit to update the employee record.</p>
-                            <form action="update?id=<?php echo trim($_GET["id"])?>" method="post" enctype="multipart/form-data">
+                            <form action="app_features_update?id=<?php echo trim($_GET["id"])?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Title</label>
                                     <input type="text" name="title" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>">
@@ -43,7 +43,7 @@ require_once "../modules/Features/update.php";
                                     <span class="invalid-feedback"><?php echo $image_err;?></span>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="list" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="app_features" class="btn btn-secondary ml-2">Cancel</a>
                             </form>
                         </div>
                     </div>

@@ -9,8 +9,23 @@ define('DB_NAME', 'billsify');
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
+$isAdmin = false;
+$isClient = false;
+
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-?>
+
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+    switch ($_SESSION["role"]) {
+        case 1:
+            $isAdmin = true;
+            break;
+        case 3:
+            $isClient = true;
+            break;
+        default:
+            break;
+    }
+}

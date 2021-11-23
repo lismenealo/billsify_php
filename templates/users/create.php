@@ -14,7 +14,7 @@ require_once "../modules/Users/create.php";
                     <div class="row">
                         <div class="col-md-12">
                             <p>Please fill this form and submit to add employee record to the database.</p>
-                            <form action="create" method="post" enctype="multipart/form-data">
+                            <form action="users_create" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Username</label>
                                     <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
@@ -41,7 +41,7 @@ require_once "../modules/Users/create.php";
                                     <span class="invalid-feedback"><?php echo $role_err;?></span>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="list" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="users" class="btn btn-secondary ml-2">Cancel</a>
                             </form>
                         </div>
                     </div>
