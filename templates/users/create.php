@@ -1,12 +1,12 @@
 <?php
-require_once "../modules/Appointments/create.php";
+require_once "../modules/Users/create.php";
 ?>
 
 <!-- Main -->
 <section id="main">
     <div class="container">
         <header>
-            <h2>Create an appointment</h2>
+            <h2>Create an user</h2>
         </header>
         <div class="row aln-center">
             <div class="wrapper">
@@ -16,19 +16,29 @@ require_once "../modules/Appointments/create.php";
                             <p>Please fill this form and submit to add employee record to the database.</p>
                             <form action="create" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label>User</label>
-                                    <input type="text" name="user" class="form-control <?php echo (!empty($user_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $user; ?>">
-                                    <span class="invalid-feedback"><?php echo $user_err;?></span>
+                                    <label>Username</label>
+                                    <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                                    <span class="invalid-feedback"><?php echo $username_err;?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Comment</label>
-                                    <textarea name="comments" class="form-control <?php echo (!empty($comments_err)) ? 'is-invalid' : ''; ?>" id="pclu-textarea"><?php echo $comments; ?></textarea>
-                                    <span class="invalid-feedback"><?php echo $comments_err;?></span>
+                                    <label>Password</label>
+                                    <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                                    <span class="invalid-feedback"><?php echo $password_err;?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Date</label>
-                                    <input type="date" name="date" class="form-control <?php echo (!empty($date_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $date; ?>">
-                                    <span class="invalid-feedback"><?php echo $date_err;?></span>
+                                    <label>Name</label>
+                                    <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
+                                    <span class="invalid-feedback"><?php echo $name_err;?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                                    <span class="invalid-feedback"><?php echo $email_err;?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>role</label>
+                                    <input type="text" name="role" class="form-control <?php echo (!empty($role_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $role; ?>">
+                                    <span class="invalid-feedback"><?php echo $role_err;?></span>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">
                                 <a href="list" class="btn btn-secondary ml-2">Cancel</a>

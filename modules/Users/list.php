@@ -3,7 +3,7 @@
 require_once "../modules/Data/config.php";
 
 // Attempt select query execution
-$sql = "SELECT * FROM appointment";
+$sql = "SELECT * FROM _user";
 $result = mysqli_query($link, $sql);
 if($result) {
     $count = mysqli_num_rows($result);

@@ -4,7 +4,7 @@
 require_once "../modules/Data/config.php";
 
 // Prepare a delete statement
-$sql = "DELETE FROM appointment WHERE id = ?";
+$sql = "DELETE FROM _user WHERE id = ?";
 
 if($stmt = mysqli_prepare($link, $sql)){
     // Bind variables to the prepared statement as parameters

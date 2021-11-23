@@ -3,53 +3,72 @@
 require_once "../modules/Data/config.php";
 
 // Define variables and initialize with empty values
-$user = $comments = $tech_stack = $time = $date  = "";
-$user_err = $comments_err = $tech_stack_err = $time_err = $date_err = "";
+$username = $name = $email  = $role = $password = "";
+$username_err = $name_err =  $email_err = $role_err = $password_err = "";
 
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
     // Get URL parameter
     $id =  trim($_GET["id"]);
 
-    // Validate user
-    $input_user = trim($_POST["user"]);
-    if(empty($input_user)){
-        $user_err = "Please enter a user.";
-    } else {
-        $user = $input_user;
-    }
-
-    // Validate comments
-    $input_comments = trim($_POST["comments"]);
-    if(empty($input_comments)){
-        $comments_err = "Please enter an comments.";
+    // Validate username
+    $input_username = trim($_POST["username"]);
+    if(empty($input_username)){
+        $username_err = "Please enter a username.";
     } else{
-        $comments = $input_comments;
+        $username = $input_username;
     }
 
-    // Validate date
-    $input_date = trim($_POST["date"]);
-    if(empty($input_date)){
-        $date_err = "Please enter the date.";
+    // Validate name
+    $input_name = trim($_POST["name"]);
+    if(empty($input_name)){
+        $name_err = "Please enter name.";
+    } else{
+        $name = $input_name;
+    }
+
+    // Validate email
+    $input_email = trim($_POST["email"]);
+    if(empty($input_email)){
+        $email_err = "Please enter the email.";
     } else {
-        $date = $input_date;
+        $email = $input_email;
+    }
+
+    // Validate role
+    $input_password = trim($_POST["password"]);
+    if(empty($input_password)){
+        $password_err = "Please enter the role.";
+    } else {
+        $password = $input_password;
+    }
+
+    // Validate role
+    $input_role = trim($_POST["role"]);
+    if(empty($input_role)){
+        $role_err = "Please enter the role.";
+    } else {
+        $role = $input_role;
     }
 
     // Check input errors before inserting in database
-    if(empty($user_err) && empty($comments_err) && empty($tech_stack_err)){
+    if(empty($username_err) && empty($name_err) && empty($password_err)){
         // Prepare an insert statement
-        $sql = "UPDATE appointment SET user_id=?, comment=?, date=? WHERE id=?";
+        $sql = "UPDATE _user SET username=?, password=?, name=?, email=?, rol_id=? WHERE id=?";
 
         if($stmt = mysqli_prepare($link, $sql)){
 
             // Set parameters
-            $param_user = $user;
-            $param_comments = $comments;
-            $param_date = $date;
+            $param_username = $username;
+            $param_name = $name;
+            $param_email = $email;
+            $param_role = $role;
+            $param_password = password_hash($password, PASSWORD_DEFAULT);
             $param_id = $id;
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_user, $param_comments, $param_date, $param_id);
+            mysqli_stmt_bind_param($stmt, "ssssss", $param_username, $param_password, $param_name, $param_email, $param_role, $param_id);
 
 
             // Attempt to execute the prepared statement
@@ -75,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $id =  trim($_GET["id"]);
 
         // Prepare a select statement
-        $sql = "SELECT * FROM appointment WHERE id = ?";
+        $sql = "SELECT * FROM _user WHERE id = ?";
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -93,9 +112,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
                     // Retrieve individual field value
-                    $user = $row["user_id"];
-                    $comments = $row["comment"];
-                    $date = $row["date"];
+                    $username = $row["username"];
+                    $password = $row["password"];
+                    $name = $row["name"];
+                    $email = $row["email"];
+                    $role = $row["rol_id"];
 
                 } else {
                     // URL doesn't contain valid id. Redirect to error page
