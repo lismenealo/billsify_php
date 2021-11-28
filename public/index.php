@@ -108,6 +108,9 @@
         case str_contains($url,'news_feed_update'):
             include_once "../templates/news/update.php";
             break;
+        case str_contains($url,'news_feed_current'):
+            include_once "../templates/news/current.php";
+            break;
         case str_contains($url,'/news_feed_delete'):
             include_once "../templates/news/delete.php";
             break;

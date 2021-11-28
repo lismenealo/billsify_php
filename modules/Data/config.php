@@ -11,6 +11,7 @@ $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 $isAdmin = false;
 $isClient = false;
+$role_name = 'User';
 
 // Check connection
 if($link === false){
@@ -21,9 +22,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
     switch ($_SESSION["role"]) {
         case 1:
             $isAdmin = true;
+            $role_name = 'Admin';
             break;
         case 3:
             $isClient = true;
+            $role_name = 'Client';
             break;
         default:
             break;

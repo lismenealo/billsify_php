@@ -16,16 +16,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
+
+    $image_height = 0;
+    $image_width = 0;
     // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+        $image_width = $check[0];
+        $image_height = $check[1];
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
     }
 
     // Check if file already exists
@@ -104,7 +107,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check input errors before inserting in database
     if(empty($title_err) && empty($description_err) && empty($tech_stack_err)){
         // Prepare an insert statement
-        $sql = "UPDATE app_features SET title=?, description=?, tech_stack=?, image=?, time=? WHERE id=?";
+        $sql = "UPDATE app_features SET title=?, description=?, tech_stack=?, image=?, time=?, image_size=? WHERE id=?";
 
         if($stmt = mysqli_prepare($link, $sql)){
 
@@ -115,9 +118,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_image = $image;
             $param_time = $time;
             $param_id = $id;
+            $param_image_size = $image_width.'x'.$image_height;
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssss", $param_title, $param_description, $param_tech_stack, $param_image, $param_time, $param_id);
+            mysqli_stmt_bind_param($stmt, "sssssss", $param_title, $param_description, $param_tech_stack, $param_image, $param_time, $param_image_size, $param_id);
 
 
             // Attempt to execute the prepared statement

@@ -34,10 +34,36 @@
             <div class="sidebar col-4 col-12-medium">
 
                 <!-- News -->
-                <section class="news" id="first_feed">
-                    <h2 class="hidden">News Feed</h2>
+                <section class="news">
+                    <ul class="divided">
+                        <?php
+                        require_once "../modules/News/list.php";
+                        $index = 0;
+                        while(($row = mysqli_fetch_array($result)) && $index < 5) {
+                            echo '<li><article class="box highlight">
+									<header>
+										<h3 class="title">
+											<span class="date">' . $row['timestamp'] . ' - </span>
+											<a href="news_feed_current?id=' . $row['id'] . ' ">
+												' . $row['title'] . '
+											</a>
+										</h3>
+									</header>
+									<a href="#" class="image left">
+										<img src="' . $row['image'] . '" alt="' . $row['image'] . '">
+									</a>
+									<div class="description">
+										' . $row['body'] . '
+									</div>
+									<footer>
+										<p class="author">' . $row['author'] . '</p>
+									</footer>
+								</article></li>';
+                            $index++;
+                        }
+                        ?>
+                    </ul>
                 </section>
-
             </div>
         </div>
     </div>

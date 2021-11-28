@@ -9,7 +9,6 @@
         <div class="row aln-center">
 
             <div class="col-12 my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-
                 <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                     <a href="images/ocr---intro-animations.gif" itemprop="contentUrl" data-size="800x600">
                         <img src="images/ocr---intro-animations.gif" itemprop="thumbnail" alt="Image description" />
@@ -124,7 +123,26 @@
                             in order to set apart your captures based on the reason/date/amount or any other descriptive detail</p>
                     </figcaption>
                 </figure>
+                <?php
+                require_once "../modules/Features/list.php";
 
+                while($row = mysqli_fetch_array($result)) {
+                    echo '<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="'. $row['image'] .'" itemprop="contentUrl" data-size="'. $row['image_size'] .'">
+                        <img src="'. $row['image'] .'" itemprop="thumbnail" alt="Image description" />
+                    </a>
+                    <figcaption itemprop="caption description">
+                        <header>
+                            <h3>'. $row['title'] .'</h3>
+                        </header>
+                        '. $row['description'] .'
+                        <p>Tech Stack: '. $row['tech_stack'] .'
+                        Estimated derivable time '. $row['time'] .' months
+                        </p>
+                    </figcaption>
+                </figure>';
+                }
+                ?>
             </div>
 
             <div class="col-4 col-6-medium col-12-small">

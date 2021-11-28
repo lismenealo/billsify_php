@@ -2279,13 +2279,17 @@ ul.dropotron li a span {
 }
 
 /* News Feed */
-
+.news .box {
+	overflow: hidden;
+}
 .news img {
 	height: auto !important;
 	min-height: 200px;
 }
 .news .image {
 	width: 45%;
+	max-height: 150px;
+	overflow: hidden;
 }
 .news .title {
 	text-align: start;
@@ -2298,6 +2302,7 @@ ul.dropotron li a span {
 }
 .news .description {
 	min-height: 130px;
+	max-height: 300px;
 }
 
 /* Tabs */
