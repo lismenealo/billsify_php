@@ -55,6 +55,8 @@ function createNewsFeed(articles) {
 loadJSON(function(response) {
     // Parse JSON string into object
     let actual_JSON = JSON.parse(response);
-    document.getElementById("first_feed").innerHTML = createNewsFeed(actual_JSON['articles'].slice(0, 3));
-    document.getElementById("second_feed").innerHTML = createNewsFeed(actual_JSON['articles'].slice(4, 7));
+    if( document.getElementById("first_feed"))
+        document.getElementById("first_feed").innerHTML = createNewsFeed(actual_JSON['articles'].slice(0, 3));
+    if(document.getElementById("second_feed"))
+        document.getElementById("second_feed").innerHTML = createNewsFeed(actual_JSON['articles'].slice(4, 7));
 });

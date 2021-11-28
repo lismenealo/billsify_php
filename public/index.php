@@ -16,6 +16,15 @@
 
     <script src="https://cdn.tiny.cloud/1/0z5yf56h0vieqgo4vr2zj1lsb6tcnoi8v5w95fcwyvnjuhlw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({ selector:'#pclu-textarea',branding: false });</script>
+
+    <!-- Calendar -->
+    <script src="bower_components/tui-code-snippet/dist/tui-code-snippet.js"></script>
+    <link rel="stylesheet" href="bower_components/tui-calendar/dist/tui-calendar.css">
+
+    <!-- If you use the default popups, use this. -->
+    <link rel="stylesheet" href="bower_components/tui-date-picker/dist/tui-date-picker.css">
+    <link rel="stylesheet" href="bower_components/tui-time-picker/dist/tui-time-picker.css">
+
 </head>
 <body class="homepage is-preload">
 <div id="page-wrapper">
