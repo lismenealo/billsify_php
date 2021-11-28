@@ -3,8 +3,8 @@
 require_once "../modules/Data/config.php";
 
 // Define variables and initialize with empty values
-$title = $body = $tech_stack = $time = $image  = "";
-$title_err = $body_err = $tech_stack_err = $time_err = $image_err = "";
+$title = $body = $tech_stack = $time = $image = $author = "";
+$title_err = $body_err = $tech_stack_err = $time_err = $image_err = $author_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -75,6 +75,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $body = $input_body;
     }
 
+    // Validate author
+    $input_author = trim($_POST["author"]);
+    if(empty($input_author)){
+        $author_err = "Please enter an author.";
+    } else{
+        $author = $input_author;
+    }
+
     // Validate image
     $input_image = $target_file;
     if(empty($input_image)){
@@ -86,16 +94,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($title_err) && empty($body_err) && empty($tech_stack_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO news (title, body, image) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO news (title, body, image, author) VALUES (?, ?, ?, ?)";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_title, $param_body, $param_image);
+            mysqli_stmt_bind_param($stmt, "sss", $param_title, $param_body, $param_image, $param_author);
 
             // Set parameters
             $param_title = $title;
             $param_body = $body;
             $param_image = $image;
+            $param_author = $author;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){

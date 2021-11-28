@@ -80,6 +80,9 @@ require_once "../modules/Data/config.php";
                 </div>
 
                 <div id="calendar" style="width: 100%"></div>
+                <a class="button btn btn-default btn-sm move-day" id="create" href="appointments_create">
+                    <i class="calendar-icon fa-calendar-plus icon solid" data-action="create"></i>
+                </a>
             </section>
 
             <!-- Calendar -->
@@ -107,6 +110,39 @@ require_once "../modules/Data/config.php";
                     }
                     ?>
                 ]);
+
+                cal.on('beforeDeleteSchedule', function(event) {
+                    var date = new Date(event.schedule.start);
+                    var now = new Date();
+                    var diff =(date.getTime() - now.getTime()) / 1000;
+                    diff /= (60 * 60);
+                    diff =  Math.abs(Math.round(diff));
+
+                    console.log(event);
+
+                    if(diff > 72)
+                        window.location.href = 'appointments_delete?id='+event.schedule.id;
+                    else
+                        alert('Is not possible to modify appointment between the 72 hours previous to it');
+                });
+
+                cal.on('beforeUpdateSchedule', function(event) {
+                    var date = new Date(event.schedule.start);
+                    var now = new Date();
+                    var diff =(date.getTime() - now.getTime()) / 1000;
+                    diff /= (60 * 60);
+                    diff =  Math.abs(Math.round(diff));
+
+                    console.log(event);
+
+                    if(diff > 72)
+                        window.location.href = 'appointments_update?id='+event.schedule.id;
+                    else
+                        alert('Is not possible to modify appointment between the 72 hours previous to it');
+
+                });
+
+
             </script>
         </div>
     </div>

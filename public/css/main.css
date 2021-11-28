@@ -2281,6 +2281,7 @@ ul.dropotron li a span {
 /* News Feed */
 .news .box {
 	overflow: hidden;
+	position: relative;
 }
 .news img {
 	height: auto !important;
@@ -2303,6 +2304,12 @@ ul.dropotron li a span {
 .news .description {
 	min-height: 130px;
 	max-height: 300px;
+}
+
+.news footer {
+	position: absolute;
+	bottom: -45px;
+	right: 0;
 }
 
 /* Tabs */

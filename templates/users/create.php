@@ -42,7 +42,7 @@ require_once "../modules/Users/create.php";
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-primary" value="Submit">
-                                    <a class="btn btn-link ml-2" href="users">Cancel</a>
+                                    <a class="btn btn-link ml-2" href="home">Cancel</a>
                                 </div>
                             </form>
                         </div>

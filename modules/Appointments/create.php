@@ -5,9 +5,9 @@ require_once "../modules/Data/config.php";
 // Define variables and initialize with empty values
 $user = $comments = $tech_stack = $time = $date  = "";
 $user_err = $comments_err = $tech_stack_err = $time_err = $date_err = "";
-
+$user =  $_SESSION["id"];
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate user
     $input_user = trim($_POST["user"]);
@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-                header("location: appointments");
+                header("Location: " . $go_back);
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";

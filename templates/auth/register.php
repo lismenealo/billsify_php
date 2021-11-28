@@ -14,6 +14,16 @@ require_once "../modules/Auth/register.php";
                 <p>Please fill this form to create an account.</p>
                 <form action="register" method="post">
                     <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
+                        <span class="invalid-feedback"><?php echo $name_err;?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                        <span class="invalid-feedback"><?php echo $email_err;?></span>
+                    </div>
+                    <div class="form-group">
                         <label>Username</label>
                         <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                         <span class="invalid-feedback"><?php echo $username_err; ?></span>

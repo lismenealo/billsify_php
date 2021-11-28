@@ -32,3 +32,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
             break;
     }
 }
+
+$go_back = 'home';
+if($_SERVER["REQUEST_METHOD"] == "GET")
+    $go_back = $_SERVER['HTTP_REFERER'];

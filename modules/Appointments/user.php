@@ -7,7 +7,7 @@ $count = 0;
 // Check input errors before inserting in database
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
     // Prepare an insert statement
-    $sql = "SELECT * FROM appointment INNER JOIN _user ON appointment.user_id = _user.id WHERE username='{$_SESSION['username']}'";
+    $sql = "SELECT appointment.id, appointment.date, appointment.comment FROM appointment INNER JOIN _user ON appointment.user_id = _user.id WHERE username='{$_SESSION['username']}'";
 
     // Attempt to execute the prepared statement
     $my_appointments = mysqli_query($link, $sql);

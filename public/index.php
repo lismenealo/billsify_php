@@ -43,16 +43,6 @@
         exit;
     }
 
-    if((str_contains($url, 'update') || str_contains($url, 'create') || str_contains($url, 'delete')) && !$isAdmin) {
-        header("location: home");
-        exit;
-    }
-
-    if((str_contains($url, 'appointments') || str_contains($url, 'users') || str_contains($url, 'app_features') || str_contains($url, 'news_feed')) && $isClient) {
-        header("location: home");
-        exit;
-    }
-
     include_once "../templates/components/nav.php";
 
     switch ($url) {

@@ -33,6 +33,11 @@ require_once "../modules/News/update.php";
                                     <span class="invalid-feedback"><?php echo $image_err;?></span>
                                 </div>
                                 <div class="form-group">
+                                    <label>Author</label>
+                                    <input type="text" name="author" class="form-control <?php echo (!empty($author_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $author; ?>">
+                                    <span class="invalid-feedback"><?php echo $author_err;?></span>
+                                </div>
+                                <div class="form-group">
                                     <input type="submit" class="btn btn-primary" value="Submit">
                                     <a class="btn btn-link ml-2" href="news_feed">Cancel</a>
                                 </div>

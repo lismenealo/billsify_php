@@ -65,31 +65,8 @@ var templates = {
 var cal = new tui.Calendar('#calendar', {
     defaultView: 'month',
     template: templates,
-    useCreationPopup: true,
+    useCreationPopup: false,
     useDetailPopup: true
-});
-
-cal.on('beforeCreateSchedule', function(event) {
-    var startTime = event.start;
-    var endTime = event.end;
-    var isAllDay = event.isAllDay;
-    var guide = event.guide;
-    var triggerEventName = event.triggerEventName;
-    var schedule = {
-        calendarId: 1
-    };
-
-    if (triggerEventName === 'click') {
-        // open writing simple schedule popup
-        console.log('click')
-    } else if (triggerEventName === 'dblclick') {
-        // open writing detail schedule popup
-        console.log('dblclick')
-    }
-
-    console.log(event);
-
-    cal.createSchedules([schedule]);
 });
 
 document.getElementById('move-next').addEventListener('click', function (){

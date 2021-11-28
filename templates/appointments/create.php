@@ -22,7 +22,7 @@ require_once "../modules/Appointments/create.php";
                                 </div>
                                 <div class="form-group">
                                     <label>Comment</label>
-                                    <textarea name="comments" class="form-control <?php echo (!empty($comments_err)) ? 'is-invalid' : ''; ?>" id="pclu-textarea"><?php echo $comments; ?></textarea>
+                                    <textarea name="comments" class="form-control <?php echo (!empty($comments_err)) ? 'is-invalid' : ''; ?>"><?php echo $comments; ?></textarea>
                                     <span class="invalid-feedback"><?php echo $comments_err;?></span>
                                 </div>
                                 <div class="form-group">
@@ -33,7 +33,7 @@ require_once "../modules/Appointments/create.php";
 
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-primary" value="Submit">
-                                    <a class="btn btn-link ml-2" href="appointments">Cancel</a>
+                                    <a class="btn btn-link ml-2" href="home">Cancel</a>
                                 </div>
                             </form>
                         </div>
