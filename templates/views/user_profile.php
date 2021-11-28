@@ -90,17 +90,23 @@ require_once "../modules/Data/config.php";
             <script type="text/javascript" src="js/moment.js"></script>
             <script type="text/javascript" src="js/calendar.js"></script>
             <script type="text/javascript">
-            cal.createSchedules([
-            {
-            id: '1',
-            calendarId: '1',
-            title: 'my schedule',
-            category: 'time',
-            dueDateClass: '',
-            start: '2021-11-18T22:30:00+09:00',
-            end: '2021-11-19T02:30:00+09:00'
-            },
-            ]);
+                cal.createSchedules([
+                    <?php
+                    require_once "../modules/Appointments/user.php";
+
+                    while ($row = mysqli_fetch_array($my_appointments)) {
+                        echo "      {id:" . $row['id'] . ",
+                                    calendarId: '1',
+                                    title: '" . $row['comment'] . "',
+                                    category: 'time',
+                                    dueDateClass: '',
+                                    allDay: true,
+                                    start: '" . $row['date'] . "T13:30:00+09:00',
+                                    end: '" . $row['date'] . "T14:30:00+09:00'
+                                    },";
+                    }
+                    ?>
+                ]);
             </script>
         </div>
     </div>
